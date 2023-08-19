@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    volumes:
+      - ./app:/usr/src/app/
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db

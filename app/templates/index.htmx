@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List</title>
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <ul>
+        {% for item in items %}
+            <li>
+                {{ item }}
+                <form hx-post="/remove/">
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form hx-post="/add">
+        <input type="text" name="new_item" placeholder="Add a new item">
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>

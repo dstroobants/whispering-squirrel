@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Incidents</title>
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+</head>
+<body>
+    <h1>Incidents</h1>
+    <ul>
+        {% for incident in items %}
+            <li>
+                {{ incident }}
+                <form hx-post="/remove/">
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form hx-post="/add">
+        <input type="text" name="new_item" placeholder="Add a new item">
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
